@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { v4 as uuidv4 } from "uuid";
+import MenuItem from "./components/MenuItem";
+
+const pseudoData = [
+  {
+    label: "Main menu 1",
+    id: uuidv4(),
+    sublabel: [
+      {
+        label: "sub menu",
+        id: uuidv4(),
+        sublabel: [
+          { label: "sub sub menu", id: uuidv4() },
+          { label: "sub sub menu", id: uuidv4() },
+          { label: "sub sub menu", id: uuidv4() },
+        ],
+      },
+      { label: "sub menu", id: uuidv4() },
+      { label: "sub menu", id: uuidv4() },
+    ],
+  },
+  {
+    label: "Main menu 2",
+    id: uuidv4(),
+    sublabel: [
+      {
+        label: "sub menu",
+        id: uuidv4(),
+        sublabel: [
+          { label: "sub sub menu", id: uuidv4() },
+          { label: "sub sub menu", id: uuidv4() },
+        ],
+      },
+      { label: "sub menu", id: uuidv4() },
+      { label: "sub menu", id: uuidv4() },
+    ],
+  },
+  {
+    label: "Main menu 3",
+    id: uuidv4(),
+    sublabel: [{ label: "sub menu", id: uuidv4() }],
+  },
+];
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <ul className="m-20 text-4xl space-y-2 w-fit list-decimal">
+        {pseudoData.map((item) => (
+          <MenuItem key={item.id} item={item} />
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-export default App
+export default App;
